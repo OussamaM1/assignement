@@ -50,7 +50,11 @@ class VirementServiceTest {
 
 
     @Test
-    void getAllVirmentsTest() {
+    void testGetAllVirmentsTest() {
+
+        // TEST : La methode service pour recuperer tout les virements
+        // Service layer
+
         //given
         var virementN1 = new Virement();
         virementN1.setMotifVirement("Test");
@@ -63,7 +67,11 @@ class VirementServiceTest {
     }
 
     @Test
-    void getVirementByIdTest() throws VirementNonExistantException {
+    void testGetVirementByIdTest() {
+
+        // TEST : La methode service pour recuperer un virement par son id
+        // Service layer
+
         Virement virement = new Virement();
         virement.setId(1L);
         virement.setMontantVirement(BigDecimal.TEN);
@@ -74,7 +82,11 @@ class VirementServiceTest {
     }
 
     @Test
-    void createTransactionTest() throws TransactionException, CompteNonExistantException {
+    void testCreateTransactionTest() throws TransactionException, CompteNonExistantException {
+
+        // TEST : La methode service pour effectuer un virement (Cas parfait)
+        // Service layer
+
         var compteEmetteur = new Compte();
         compteEmetteur.setSolde(BigDecimal.valueOf(1000));
         var compteBeneficiaire = new Compte();
@@ -107,7 +119,11 @@ class VirementServiceTest {
     }
 
     @Test
-    void createTransactionTest_whenDuplicatedCompte() {
+    void testCreateTransactionTest_whenDuplicatedCompte() {
+
+        // TEST : La methode service pour effectuer un virement (Cas ou l'emetteur est le Benificiaire en meme temps )
+        // Service layer
+
         var thrown = Assertions.assertThrows(
                 TransactionException.class,
                 () -> {
@@ -142,7 +158,13 @@ class VirementServiceTest {
     }
 
     @Test
-    void createTransactionTest_whenMontant_Maximal_Depasse() {
+    void testCreateTransactionTest_whenMontant_Maximal_Depasse() {
+
+        // TEST : La methode service pour effectuer un virement si on depasse le Montant maximal de 10000
+        // Service layer
+        //Le cas ou le montant de la transaction a depasse le montant maximal
+
+
         var thrown = Assertions.assertThrows(
                 TransactionException.class,
                 () -> {
@@ -177,7 +199,12 @@ class VirementServiceTest {
         Assertions.assertEquals("Montant maximal de virement dépassé", thrown.getMessage());
     }
     @Test
-    void createTransactionTest_whenMontant_Minimal_NonAtteint() {
+    void testCreateTransactionTest_whenMontant_Minimal_NonAtteint() {
+
+        // TEST : La methode service pour effectuer un virement si on depasse le Montant maximal de 10000
+        // Service layer
+        //Le cas ou le montant de la transaction n'atteint pas le montant minimal
+
         var thrown = Assertions.assertThrows(
                 TransactionException.class,
                 () -> {
@@ -213,7 +240,13 @@ class VirementServiceTest {
     }
 
     @Test
-    void createTransactionTest_whenSolde_insufissant() {
+    void testCreateTransactionTest_whenSolde_insufissant() {
+
+        // TEST : La methode service pour effectuer un virement si on depasse le Montant maximal de 10000
+        // Service layer
+        //Le cas ou l'emetteur veut transmetteur une somme plus que son solde
+        // 2000 > 1000
+
         var thrown = Assertions.assertThrows(
                 TransactionException.class,
                 () -> {

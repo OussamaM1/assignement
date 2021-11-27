@@ -43,6 +43,9 @@ public class VirementControllerTest {
 
     @Test
     public void givenVirements_whenGetVirements_thenStatus200() throws Exception {
+
+        //TEST : requete GET : recuperer tous les virements
+
         mockMvc.perform(get("/service-virement/virements"))
                 .andExpect(status().isOk())
                 .andExpect(content()
@@ -52,6 +55,9 @@ public class VirementControllerTest {
 
     @Test
     public void givenVirementById_whenGetVirementByIdAndNotFound_thenStatus451() throws Exception {
+
+        //TEST : requete GET : recuperer un virement mais introuvable (fail 451)
+
         when(virementService.getVirementById(any(Long.class))).thenReturn(Optional.empty());
         mockMvc.perform(get("/service-virement/virements/100"))
                 .andExpect(status().is4xxClientError())
@@ -61,6 +67,8 @@ public class VirementControllerTest {
 
     @Test
     public void givenVirementById_whenGetVirementById_thenStatus200() throws Exception {
+
+        //TEST : Requete GET : REcupere un virement by id (Succee 200)
 
         var compteEmetteur = new Compte();
         compteEmetteur.setNrCompte("RIB1");

@@ -26,7 +26,9 @@ class VirementRepositoryTest {
 
     @Test
     @Order(1)
-    void findOne() {
+    void testFindOneVirement() {
+
+        // TEST : Récuperer un virement avec son id
 
         //given
         var virement = new Virement();
@@ -46,7 +48,10 @@ class VirementRepositoryTest {
 
     @Test
     @Order(4)
-    void findAll() {
+    void testFindAllVirement() {
+
+        //TEST : Consulter tout les virements
+
         var virement = new Virement();
         virement.setMontantVirement(BigDecimal.TEN);
         virement.setDateExecution(new Date());
@@ -58,7 +63,10 @@ class VirementRepositoryTest {
 
     @Test
     @Order(3)
-    void save() {
+    void testSaveVirement() {
+
+        //TEST : Effectuer un virement
+
         //Given
         var virement = new Virement();
         virement.setMontantVirement(BigDecimal.TEN);
@@ -75,7 +83,10 @@ class VirementRepositoryTest {
 
     @Test
     @Order(2)
-    void delete() {
+    void testDeleteVirement() {
+
+        //TEST : Supprimer un virement
+
         var virement = new Virement();
         virement.setMontantVirement(BigDecimal.TEN);
         virement.setDateExecution(new Date());
