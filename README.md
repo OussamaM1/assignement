@@ -1,3 +1,7 @@
+## Objectif :
+
+L'objectif principal de ce projet est de construire un module de test basé sur un code d'application préexistant
+
 ## Description :
 
 Un virement est un transfert d'argent d'un compte emetteur vers un compte bénéficiaire ...
